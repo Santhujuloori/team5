@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration and Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .container h1 {
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+        .container button, .container input, .container textarea {
+            margin-top: 10px;
+            padding: 15px;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s ease-in-out;
+        }
+        .container input:focus, .container textarea:focus {
+            border-color: #764ba2;
+            outline: none;
+        }
+        .container button {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .container button:hover {
+            background-color: #5648d4;
+        }
+        .success {
+            color: #28a745;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container fade-in" id="homePage">
+    <h1>Welcome to Our Service</h1>
+    <button onclick="showRegisterPage()">Register</button>
+    <button onclick="redirectToLoginPage()">Login</button>
+</div>
+
+<div class="container fade-in" id="registerPage" style="display: none;">
+    <h1>Register</h1>
+    <input type="text" id="userName" placeholder="User Name (Max 50 characters)" maxlength="50">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password (Max 30 characters)" maxlength="30">
+    <textarea id="address" placeholder="Address (Max 100 characters)" maxlength="100"></textarea>
+    <input type="text" id="contactNumber" placeholder="Contact Number (Max 10 characters)" maxlength="10">
+    <button onclick="registerUser()">Register</button>
+</div>
+
+<div class="container fade-in" id="ackPage" style="display: none;">
+    <h1 class="success">User Registration Successful</h1>
+    <p><strong>User Id:</strong> <span id="userId"></span></p>
+    <p><strong>User Name:</strong> <span id="ackUserName"></span></p>
+    <p><strong>Email:</strong> <span id="ackEmail"></span></p>
+</div>
+
+<script>
+    function showRegisterPage() {
+        document.getElementById('homePage').style.display = 'none';
+        document.getElementById('registerPage').style.display = 'block';
+    }
+
+    function redirectToLoginPage() {
+        window.location.href = 'file:///Users/pratheek/case%20study/home.html';
+    }
+
+    function registerUser() {
+        const userName = document.getElementById('userName').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const address = document.getElementById('address').value;
+        const contactNumber = document.getElementById('contactNumber').value;
+
+        // Basic validation (not comprehensive)
+        if (userName && email && password && address && contactNumber) {
+            const userId = Math.floor(Math.random() * 100000);
+
+            document.getElementById('userId').innerText = userId;
+            document.getElementById('ackUserName').innerText = userName;
+            document.getElementById('ackEmail').innerText = email;
+
+            document.getElementById('registerPage').style.display = 'none';
+            document.getElementById('ackPage').style.display = 'block';
+        } else {
+            alert('Please fill in all fields.');
+        }
+    }
+</script>
+
+</body>
+</html>
